@@ -34,20 +34,21 @@ const Header = () => {
     },
   ]
   return (
-    <header className="py-3 shadow bg-gray-500">
+    <header className="bg-black fixed top-0 left-0 right-0">
       <Container>
-        <nav className="flex items-center justify-between">
+        <nav className="px-4 py-4 text-white max-w-7xl mx-auto flex justify-between items-center">
           <div>
-            <Link to={"/"}>
-              logo
-            </Link>
+          <Link to={"/"} className="text-xl text-white font-bold">.<span className="text-orange-600">blog</span></Link> 
           </div>
-          <ul className="flex items-center ml-auto">
+          <ul className="md:flex text-lg gap-12">
             {
               navItems.map((item, index)=>(
                 item.active ? (
                   <li key={index}>
-                    <button className="inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full"
+                    <button  
+                     className={({ isActive }) =>
+                     isActive? "active" : ""  
+                   }
                     onClick={()=>navigate(item.path)}
                     >
                       {item.link}

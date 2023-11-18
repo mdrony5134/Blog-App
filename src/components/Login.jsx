@@ -5,6 +5,7 @@ import authService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Input } from "./index";
+import loginImage from '../assets/login.png'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,20 +28,27 @@ const Login = () => {
     }
   };
   return (
-    <div className="flex items-center w-full justify-center">
+   <>
+    <div>
+       <div className="py-40 px-4 bg-black text-white">
+      <h2 className="text-5xl text-center lg:text-7xl leading-snug font-bold">Login Page</h2>
+      </div>
+    </div>
+    
+    <div className="flex items-center w-full justify-center my-8">
       <div
         className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
       >
-        <div className="mb-2 flex justify-center">
-          <span className="inline-block w-full max-w-[100px]">logo</span>
+        <div className="mb-4 flex justify-center">
+          <img src={loginImage} alt="" className="inline-block w-full max-w-[100px]"/>
         </div>
         <h2 className="text-center text-2xl font-bold leading-tight">
-          Sign in to your account
+          Login to your account
         </h2>
         <p className="mt-2 text-center text-base text-black/60">
           Don&apos;t have any account?&nbsp;
           <Link
-            to="/signup"
+            to="/singup"
             className="font-medium text-primary transition-all duration-200 hover:underline"
           >
             Sign Up
@@ -71,13 +79,14 @@ const Login = () => {
                 required: true,
               })}
             />
-            <button type="submit" className="w-full">
-              Sing in
+            <button  type="submit" className="w-full bg-green-700 text-white py-2 rounded-lg text-xl font-bold">
+              Log in
             </button>
           </div>
         </form>
       </div>
     </div>
+   </>
   );
 };
 

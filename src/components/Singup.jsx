@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import authService from "../appwrite/auth";
 import { login } from "../store/authSlice";
-import { Input, Button } from "./index";
+import { Input } from "./index";
+import singupImage from '../assets/sign-in.png'
 
 const Singup = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Singup = () => {
   const [error, setError] = useState("");
 
   const create = async (data) => {
+    console.log(data)
     setError("");
     try {
       const userData = await authService.createAccount(data);
@@ -27,25 +29,24 @@ const Singup = () => {
   };
 
   return (
-    <div className="flex items-center w-full justify-center">
+    <>
+     <div>
+       <div className="py-40 px-4 bg-black text-white">
+      <h2 className="text-5xl text-center lg:text-7xl leading-snug font-bold">SingUp Page</h2>
+      </div>
+    </div>
+
+    <div className="flex items-center w-full justify-center my-8">
       <div
         className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
       >
         <div className="mb-2 flex justify-center">
-          <span className="inline-block w-full max-w-[100px]">logo</span>
+           <img src={singupImage} alt="" className="inline-block w-full max-w-[100px]"/>
         </div>
-        <h2 className="text-center text-2xl font-bold leading-tight">
-          Sign in to your account
+        <h2 className="text-center text-2xl font-bold leading-tight my-4">
+          Sign Up to your account
         </h2>
-        <p className="mt-2 text-center text-base text-black/60">
-          Don&apos;t have any account?&nbsp;
-          <Link
-            to="/login"
-            className="font-medium text-primary transition-all duration-200 hover:underline"
-          >
-            Sign Up
-          </Link>
-        </p>
+        
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
         <form onSubmit={handleSubmit(create)}>
           <div className="space-y-4">
@@ -78,13 +79,14 @@ const Singup = () => {
                 required: true,
               })}
             />
-            <button type="submit" className="w-full">
-              Create Account
+            <button type="submit" className="w-full bg-green-700 text-white py-2 rounded-lg text-xl font-bold">
+             Sing Up
             </button>
           </div>
         </form>
       </div>
     </div>
+    </>
   );
 };
 
