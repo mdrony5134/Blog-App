@@ -1,12 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
-import React from "react";
+import { forwardRef } from "react";
 import { useId } from "react";
 
 const Select = ({ label, options, className = "", ...props }, ref) => {
   const id = useId();
   return (
     <div>
-      {label && <label id={id}></label>}
+      {label && <label id={id}>{label}</label>}
       <select
         id={id}
         {...props}
@@ -23,4 +23,4 @@ const Select = ({ label, options, className = "", ...props }, ref) => {
   );
 };
 
-export default React.forwardRef(Select);
+export default forwardRef(Select);

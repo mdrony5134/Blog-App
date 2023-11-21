@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import authService from "../appwrite/auth";
 import { login } from "../store/authSlice";
-import { Input } from "./index";
+import { Input, Button } from "./index";
 import singupImage from '../assets/sign-in.png'
 
 const Singup = () => {
@@ -19,8 +19,8 @@ const Singup = () => {
     try {
       const userData = await authService.createAccount(data);
       if (userData) {
-        const currentData = await authService.getCurrentUser();
-        if (currentData) dispatch(login(currentData));
+        const userData = await authService.getCurrentUser();
+        if (userData) dispatch(login(userData));
         navigate("/");
       }
     } catch (error) {
@@ -31,8 +31,8 @@ const Singup = () => {
   return (
     <>
      <div>
-       <div className="py-40 px-4 bg-black text-white">
-      <h2 className="text-5xl text-center lg:text-7xl leading-snug font-bold">SingUp Page</h2>
+       <div className="mt-16 py-6 px-4 bg-image text-orange-600">
+      <h2 className="text-5xl text-center lg:text-7xl leading-snug font-bold">#SingUp Page</h2>
       </div>
     </div>
 
@@ -54,7 +54,7 @@ const Singup = () => {
               label="FullName:"
               type="text"
               placeholder="Enter your full name"
-              {...register("text", {
+              {...register("name", {
                 required: true,
               })}
             />
@@ -79,9 +79,9 @@ const Singup = () => {
                 required: true,
               })}
             />
-            <button type="submit" className="w-full bg-green-700 text-white py-2 rounded-lg text-xl font-bold">
+            <Button type="submit" className="w-full bg-green-700 text-white py-2 rounded-lg text-xl font-bold">
              Sing Up
-            </button>
+            </Button>
           </div>
         </form>
       </div>

@@ -10,12 +10,12 @@ const LogoutBtn = () => {
     });
   };
   return (
-    <div
-      className="inline-block px-6 py-2 hover:bg-blue-100 rounded-full duration-200"
+    <button
+      className="bg-orange-600 px-4 py-1 text-white rounded-md"
       onClick={logoutHandler}
     >
       Logout
-    </div>
+    </button>
   );
 };
 

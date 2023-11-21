@@ -4,7 +4,7 @@ import { login as storeLogin } from "../store/authSlice";
 import authService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { Input } from "./index";
+import { Input, Button } from "./index";
 import loginImage from '../assets/login.png'
 
 const Login = () => {
@@ -17,7 +17,7 @@ const Login = () => {
     console.log(data);
     setError("");
     try {
-      const session = await authService.login();
+      const session = await authService.login(data);
       if (session) {
         const userData = await authService.getCurrentUser();
         if (userData) dispatch(storeLogin(userData));
@@ -30,8 +30,8 @@ const Login = () => {
   return (
    <>
     <div>
-       <div className="py-40 px-4 bg-black text-white">
-      <h2 className="text-5xl text-center lg:text-7xl leading-snug font-bold">Login Page</h2>
+       <div className="mt-16 py-6 px-4 bg-image text-orange-600">
+      <h2 className="text-5xl text-center lg:text-7xl leading-snug font-bold">#Login Page</h2>
       </div>
     </div>
     
@@ -79,9 +79,9 @@ const Login = () => {
                 required: true,
               })}
             />
-            <button  type="submit" className="w-full bg-green-700 text-white py-2 rounded-lg text-xl font-bold">
+            <Button  type="submit" className="w-full bg-green-700 text-white py-2 rounded-lg text-xl font-bold">
               Log in
-            </button>
+            </Button>
           </div>
         </form>
       </div>

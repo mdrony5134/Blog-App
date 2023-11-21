@@ -24,7 +24,7 @@ const Post = () => {
   const deletePost = () => {
     appwriteService.deletePost(post.$id).then((status) => {
       if (status) {
-        appwriteService.deleteFile(post.FeaturedImage);
+        appwriteService.deleteFile(post.featuredImage);
         navigate("/");
       }
     });
@@ -33,11 +33,11 @@ const Post = () => {
   return post ? (
     <div className="py-8">
       <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+        <div className="w-[50%] flex justify-center mb-4 relative border rounded-xl p-2 mt-20 overflow-hidden">
           <img
-            src={appwriteService.getFilePreview(post.FeaturedImage)}
+            src={appwriteService.getFilePreview(post.featuredImage)}
             alt={post.title}
-            className="rounded-xl"
+            className="rounded-xl w-full"
           />
 
           {isAuth && (
@@ -54,7 +54,7 @@ const Post = () => {
           )}
         </div>
         <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.Title}</h1>
+          <h1 className="text-2xl font-bold">{post.title}</h1>
         </div>
         <div className="browser-css">{parse(post.content)}</div>
       </Container>

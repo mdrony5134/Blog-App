@@ -7,3 +7,9 @@ body{
 .active{
    color: orangered;
 }
+
+.bg-image{
+    background-image: url('/public/allpost.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -15,46 +15,32 @@ export class AuthService {
   }
 
   async createAccount({ email, password, name }) {
-    try {
-      const userAccount = await this.account.create(
-        ID.unique(),
-        email,
-        password,
-        name,
-      );
-      if (userAccount) {
-        // call another method
-        return this.login(email, password);
-      } else {
-        return userAccount;
-      }
-    } catch (error) {
-      throw error;
+    const userAccount = await this.account.create(ID.unique(), email, password, name);
+    if (userAccount) {
+      return this.login({ email, password });
+    } else {
+      return userAccount;
     }
   }
 
   async login({ email, password }) {
-    try {
-      return this.account.createEmailSession(email, password);
-    } catch (error) {
-      throw error;
-    }
+    return this.account.createEmailSession(email, password);
   }
 
   async getCurrentUser() {
     try {
       return this.account.get();
     } catch (error) {
-      console.log("getcurrent user error", error);
+      console.log("Appwrite service:: getCurrentUser :: error", error);
+      return null; 
     }
-    return null;
   }
 
   async logout() {
     try {
       return this.account.deleteSessions();
     } catch (error) {
-      console.log("logout error", error);
+      console.log("Appwrite service :: logout :: error", error);
     }
   }
 }
