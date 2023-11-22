@@ -21,12 +21,12 @@ const Home = () => {
     return (
       <>
         <AuthBanner />
-        <div className="w-full py-4">
+        <div className="w-full">
           <Container>
-            <div className="flex flex-wrap">
-              <h2 className="mt-10 text-3xl text-gray-300 font-bold">Blog Post</h2>
+          <h2 className="mt-20 text-3xl text-gray-300 font-bold">Blog Post</h2>
+            <div className="flex flex-wrap items-center">
               {posts.map((post) => (
-                <div key={post.$id} className="p-2 mt-10 w-1/4">
+                <div key={post.$id} className=" w-1/4">
                   <PostCard {...post} />
                 </div>
               ))}
